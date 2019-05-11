@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <conio.h>
 
-int lerParcela(char operando) {
+/*
+Função para ler uma parcela. O operando é utilizado para mostrar uma mensagem para o usuário,
+ mas não é feita validação do valor digitado pelo usuário.
+*/
+int lerParcela(char* mensagem) {
 	int parcela;
 
-	printf("Digite uma parcela %c 0: ", operando);
+	printf(mensagem);
 	scanf("%d", &parcela);
 	return parcela;
 }
@@ -15,21 +19,18 @@ int main ()
     int i, inicial, parcela, finale;
     char sentido;
     
-    int parcela1 = lerParcela('<');
-
     printf ("\n Qual o valor inicial? ");
     scanf  ("%d", &inicial);
     printf (" Qual o valor final? ");
     scanf  ("%d", &finale);
-    printf (" Contar de quanto em quanto? ");
-    scanf  ("%d", &parcela);
+    parcela = lerParcela(" Contar de quanto em quanto? ");
 
     if (finale<inicial && parcela>0)
     {
         do
         {
             printf(" Valor final < valor inicial \n");
-            printf("\n Digite uma parcela < 0! ");
+		    parcela = lerParcela("\n Digite uma parcela < 0! ");
             scanf("%d", &parcela);
         }
         while (finale<inicial && parcela>0);
@@ -39,8 +40,7 @@ int main ()
                 if (parcela<0 && finale>inicial)
                     {
                         printf(" Valor final > valor inicial \n");
-                        printf("\n Digite uma parcela > 0!");
-                        scanf("%d", &parcela);
+		                parcela = lerParcela("\n Digite uma parcela > 0! ");
                     }
                 }
 

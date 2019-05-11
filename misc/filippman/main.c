@@ -14,6 +14,28 @@ int lerParcela(char* mensagem) {
 	return parcela;
 }
 
+/*
+Função para ler uma parcela até obter um valor correto.
+*/
+int lerParcelaCorreta(char* mensagemErro, char* mensagemLeituraParcela, char operador) {
+	do {
+		printf(mensagemErro);
+		int parcela = lerParcela(mensagemLeituraParcela);
+		if (operador == '<') {
+			if (parcela < 0) {
+				return parcela;
+			}
+		} else if (operador == '>') {
+			if (parcela > 0) {
+				return parcela;
+			}
+		} else {
+			printf("ERRO PROGRAMADOR - OPERADOR INVALIDO - %c", operador);
+			return 0;
+		}
+	} while(1);
+}
+
 int main ()
 {
     int i, inicial, parcela, finale;
@@ -25,24 +47,16 @@ int main ()
     scanf  ("%d", &finale);
     parcela = lerParcela(" Contar de quanto em quanto? ");
 
+	//
+	// Acerta o valor da parcela para permitir que o loop chegue ao fim.
+	//
     if (finale<inicial && parcela>0)
     {
-        do
-        {
-            printf(" Valor final < valor inicial \n");
-		    parcela = lerParcela("\n Digite uma parcela < 0! ");
-            scanf("%d", &parcela);
-        }
-        while (finale<inicial && parcela>0);
-
-    }else
-            {
-                if (parcela<0 && finale>inicial)
-                    {
-                        printf(" Valor final > valor inicial \n");
-		                parcela = lerParcela("\n Digite uma parcela > 0! ");
-                    }
-                }
+    	parcela = lerParcelaCorreta(" Valor final < valor inicial \n", "\n Digite uma parcela < 0! ", '<');
+    }else 
+    {
+    	parcela = lerParcelaCorreta(" Valor final > valor inicial \n", "\n Digite uma parcela > 0! ", '>');
+    }
 
     //inicio posit ou negat ; parcela <0; final < inicial, ou seja, contagem regressiva.
     if (parcela<0 && inicial>finale){

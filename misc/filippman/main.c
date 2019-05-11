@@ -2,39 +2,8 @@
 #include <stdlib.h>
 #include <conio.h>
 
-/*
-Função para ler uma parcela. O operando é utilizado para mostrar uma mensagem para o usuário,
- mas não é feita validação do valor digitado pelo usuário.
-*/
-int lerParcela(char* mensagem) {
-	int parcela;
-
-	printf(mensagem);
-	scanf("%d", &parcela);
-	return parcela;
-}
-
-/*
-Função para ler uma parcela até obter um valor correto.
-*/
-int lerParcelaCorreta(char* mensagemErro, char* mensagemLeituraParcela, char operador) {
-	do {
-		printf(mensagemErro);
-		int parcela = lerParcela(mensagemLeituraParcela);
-		if (operador == '<') {
-			if (parcela < 0) {
-				return parcela;
-			}
-		} else if (operador == '>') {
-			if (parcela > 0) {
-				return parcela;
-			}
-		} else {
-			printf("ERRO PROGRAMADOR - OPERADOR INVALIDO - %c", operador);
-			return 0;
-		}
-	} while(1);
-}
+int lerParcela(char* mensagem);
+int lerParcelaCorreta(char* mensagemErro, char* mensagemLeituraParcela, char operador);
 
 int main ()
 {
@@ -92,3 +61,38 @@ int main ()
 	*/
     return 0;
 }
+
+/*
+Função para ler uma parcela. O operando é utilizado para mostrar uma mensagem para o usuário,
+ mas não é feita validação do valor digitado pelo usuário.
+*/
+int lerParcela(char* mensagem) {
+	int parcela;
+
+	printf(mensagem);
+	scanf("%d", &parcela);
+	return parcela;
+}
+
+/*
+Função para ler uma parcela até obter um valor correto.
+*/
+int lerParcelaCorreta(char* mensagemErro, char* mensagemLeituraParcela, char operador) {
+	do {
+		printf(mensagemErro);
+		int parcela = lerParcela(mensagemLeituraParcela);
+		if (operador == '<') {
+			if (parcela < 0) {
+				return parcela;
+			}
+		} else if (operador == '>') {
+			if (parcela > 0) {
+				return parcela;
+			}
+		} else {
+			printf("ERRO PROGRAMADOR - OPERADOR INVALIDO - %c", operador);
+			return 0;
+		}
+	} while(1);
+}
+

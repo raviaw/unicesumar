@@ -53,11 +53,25 @@ int main ()
     if (finale<inicial && parcela>0)
     {
     	parcela = lerParcelaCorreta(" Valor final < valor inicial \n", "\n Digite uma parcela < 0! ", '<');
-    }else 
+    }else if (finale>inicial && parcela<0)
     {
     	parcela = lerParcelaCorreta(" Valor final > valor inicial \n", "\n Digite uma parcela > 0! ", '>');
     }
 
+	//
+	// Você não precisa verificar todas as outras condições. O código não vai executar até aqui se a parcela não estiver com o valor correto.
+	//    
+    if (parcela < 0) {
+        for (i = inicial; i>=finale; i+=parcela){
+            printf(" %d \n", i);
+        }
+	} else {
+        for (i=inicial;i<=finale;i+=parcela){
+            printf(" %d \n", i);
+        }
+	}
+
+	/*
     //inicio posit ou negat ; parcela <0; final < inicial, ou seja, contagem regressiva.
     if (parcela<0 && inicial>finale){
             for (i = inicial; i>=finale; i+=parcela){
@@ -75,5 +89,6 @@ int main ()
                             printf("O valor da parcela nao gera o resultado pretendido! \n\n");
                         }
             }
+	*/
     return 0;
 }
